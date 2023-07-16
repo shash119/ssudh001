@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>HIV- Will India Meet 95-95-95?</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/uikit.min.css" />
+
+
+        <script src="https://kit.fontawesome.com/5c709ef931.js" crossorigin="anonymous"></script>
+        <script src="https://kit.fontawesome.com/5c709ef931.js" crossorigin="anonymous"></script>
+
+
+
+        <!-- UIKIT -->
+
+
+        <script src="js/uikit.min.js"></script>
+        <script src="js/uikit-icons.min.js"></script>
+
+        <!-- LEAFLET -->
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+        <!-- echarts -->
+
+
+        <script src="echarts.js"></script>
+        <script src="theme/roma.js"></script>
+
+        <style media="screen">
+
+              body {
+
+        background-color: #FFFFF0;
+        color: black;
+        font-family: "Georgia";
+        font-size: "20";
+
+      }
+
+          #chart_1 {
+            height:400px;
+            width:100%;
+          }
+
+
+          <style>
+
+        		html, body {
+        			height: 100%;
+        			margin: 0;
+        		}
+
+                .first-letter {
+
+                    font-family: "Georgia";
+                    font-size: 56px;
+                    color: red;
+                    float: center;
+                    line-height: 45px;
+                    padding-top: 4px;
+              }
+
+
+            		.leaflet-container {
+            			height: 400px;
+            			width: 600px;
+            			max-width: 100%;
+            			max-height: 100%;
+
+                  		}
+
+                        .divmain {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-right: 100px;
+                margin-left: 100px;
+                background-color: #FFFFF0;
+
+                      }
+
+                  .divtimeline {
+                   margin-top: 2px;
+                   margin-bottom: 2px;
+                   margin-right: 80px;
+                   margin-left: 80px;
+                   background-color: #FFFFF0;
+
+                      }
+
+                      .divgaw {
+                margin-top: 20px;
+                margin-bottom: 20px;
+                margin-right: 20px;
+                margin-left: 20px;
+                background-color: yellow;
+
+                    }
+
+                   }
+
+
+               #myVideo {
+                 position: fixed;
+                 right: 0;
+                 bottom: 0;
+                 min-width: 100%;
+               }
+
+               .uk-icon {
+                position: relative;
+                top: -3px;
+              }
+
+
+
+                #map { width: auto;
+                      height: auto;
+                    }
+
+                      .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif; background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0 5px; color: #777; }
+                      .legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+
+                      ul {
+                        list-style-type: none;
+                        margin: 0;
+                        padding: 0;
+                        overflow: hidden;
+                        background-color:#353935;
+                        font-family: Georgia;
+                        position: center;
+                      }
+
+                      li {
+                        float: left;
+                      }
+
+                      li a, .dropbtn {
+                        display: inline-block;
+                        color: white;
+                        text-align: center;
+                        padding: 14px 16px;
+                        text-decoration: none;
+                      }
+
+                      li a:hover, .dropdown:hover .dropbtn {
+                        background-color: #EDEADE;
+                      }
+
+                      li.dropdown {
+                        display: inline-block;
+                      }
+
+                      .dropdown-content {
+                        display: none;
+                        position: absolute;
+                        background-color: #EDEADE	;
+                        min-width: 160px;
+                        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.8);
+                        z-index: 1;
+                      }
+
+                      .dropdown-content a {
+                        color: black;
+                        padding: 12px 16px;
+                        text-decoration: none;
+                        display: block;
+                        text-align: left;
+                      }
+
+                      .dropdown-content a:hover {background-color: #f1f1f1;}
+
+                      .dropdown:hover .dropdown-content {
+                        display: block;
+                      }
+
+
+            </style>
+          </head>
+
+       <body>
+
+         <center>
+         <ul>
+            <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Introduction</a>
+            <div class="dropdown-content">
+            <a href="#start">Meet Mona</a>
+            <a href="#2">Meet Team Palawi</a>
+
+
+            <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">India's Scenario</a>
+            <div class="dropdown-content">
+            <a href="#3">India's Numbers- A Rundown</a>
+            <a href="#4">A brief history of India's journey</a>
+            <a href="#5">Where is India going wrong?</a>
+
+
+             <li class="dropdown">
+             <a href="javascript:void(0)" class="dropbtn">Conclusion</a>
+             <div class="dropdown-content">
+             <a href="#6">So, how is India doing?</a>
+          </div>
+        </li>
+      </ul>
+    </center>
+
+         <video autoplay muted loop id="myVideo">
+          <source src="hiv landing page.mp4" height="100" type="video/mp4">
+          </video><div class="uk-position-bottom-center">
+          <a href="#start" uk-scroll><span class="uk-text-emphasis" uk-icon="icon: chevron-down;ratio: 3" ></span></a>
+           </div>
+
+                 <br>
+                 <br>
+
+               <div class="divmain">
+                <div class="uk-card"><p id="start"><span class="first-letter">I</span>s it possible to navigate HIV in a growing economy, where this infection is loaded with so much shame?
+                  <p>Mona Balani, a renowned HIV+ activist and advocate shared a raw account of how the HIV+ diagnosis she and her husband received in the nineties, changed her life forever.
+                  <p>"When I got my infection, the lab technician at the government centre asked me<i> “Aapke husband trucks chalate hain kya?””</i> (Does your husband drive trucks?), shared Mona Balani, refering to a common stereotype in India, that truck drivers are sexually depraved.</div>
+
+                  <br>
+                  <br>
+
+                  <div class="uk-animation-toggle" tabindex="0">
+                  <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
+
+                  <video width="950" height="500" controls>
+                  <source src="mona clip 12.mp4" type="video/mp4"></div></div>
+
+                          </div>
+                     </div>
+                  </div>
+             </div>
+          </div>
+
+                <div class="divmain">
+                 <div class="uk-column-1-2">
+
+
+                  <p1>Balani and her husband got diagnosed at Jaipur in Rajasthan, at a time when India only knew about a deadly gay man’s disease called AIDS.</p>
+
+                  <p>At least theoretically, HIV is medically manageable today – Dr. Ishwar Gilada, a noted physician and the President of the AIDS Society in India, emphatically stated – “I always tell my patients that if God comes down and gives you two options, diabetes and HIV, choose HIV. When diagnosed, it just requires regular medication.”
+
+                  <p>Unfortunately, it is still seen as a medal of poor character – Balani's experiences prove this.
+
+                  <p>Having lost her husband and her infant, Balani was taking on the world alone, as a single mother with a supposedly dirty disease.
+
+                  <p>While she was still counting these losses, her health started to fail her. She contracted tuberculosis for the second time. It was only at this juncture she started her antiretroviral treatment –  she had neglected her treatment earlier because she was not facing any dire symptoms and wanted to save her ailing husband.
+
+                  <p>Extrapulmonary tuberculosis almost defeated her. While she was on the brink of death, weighing only thirty kilograms, her son pleaded with her to hold on. He said, "Mummy, Papa has already left us. Now you too must not leave me too...", she shared with Goan Connection.
+
+                  <p>Around the time Balani was building her life without her husband in Jaipur, about a thousand kilometres away from her, two Maharashtra-based social workers Mangaltaisha Palawi and her daughter Dimple Ghadge stumbled upon two abandoned HIV+ children.
+
+                  <p>At this point of time, they were neck-deep in HIV-related activism, from showcasing informative skits to working with sex workers in red light districts.
+
+                  <p>They went from pillar to post trying to secure care for the two children, and no one took them in. This inspired a project to build a home for HIV+ children.
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+
+            <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true" id="2">
+            <center><video width="950" height="500" controls>
+            <source src="palawi clip 12.mp4" type="video/mp4">
+
+               </div>
+            </div>
+          </div>
+
+          <div class="divmain">
+
+            <div class="uk-column-1-2">
+             <p>Today, Palawi boasts of having 150 children under their wing, as well as their own school. They have raised individuals who are ready to build their lives with careers and marriage.
+               Meanwhile, Balani, having beat tuberculosis twice and surviving heart-wrenching personal losses, is hail and hearty. She is deeply immersed in shattering the stigma surrounding HIV, working with HIV/AIDS Alliance India. </p>
+
+             <p>From 1999 to 2023, the landscape in India with respect to HIV has changed dramatically.</p>
+
+             <p>At least theoretically, women in Balani's shoes have access to a wealth of information and quality healthcare which enables them to not transmit the virus to anyone else, including their sexual partners and children. </p>
+
+             <p>Children of Palawi are living proof that HIV+  youths now have the opportunity to flourish in life. Undoubtedly, there has been progress.</p>
+           </div>
+
+           <hr class="uk-divider-icon">
+
+           <h1 class="uk-heading-bullet" id="3">India's Numbers- A rundown</h1>
+
+           <div class="uk-column-1-2">
+
+              <p><span class="first-letter">S</span>tatistically, India is faring quite well in terms of managing the epidemic, at least at face value – Balani and the children of Palawi are living examples of it. Dr. Gilada explained that given India’s population size, the infection rates aren’t too high: “If you look at the infection rate per million people, India is not bad.” But, are these numbers and their stories reflective of the on-ground realities?</p>
+
+              <p>Today, living a relatively undisturbed life with HIV is a medical certainty.</p>
+
+              <p>However, in India this ease of HIV management is not a social and economic guarantee, in spite of India being one of the few countries to have a legislation dedicated to protecting HIV-positive individuals from discrimination.</p>
+
+              <p>India is far from reaching UNAIDS’S 2030 goal of 95-95-95 – 95% of people living with HIV (PLHIV) should be aware of their status, 95% of people living with HIV should be on antiretroviral therapy (ART) and 95% of HIV+ people on ART should be virally suppressed so as to not infect anyone else.</P>
+
+              <p>Based on National AIDS Control Organisation’s (NACO) most recent estimates, about 77% of PLHIV are aware of their status, 84% of them are on ART and 85% of them are virally suppressed.</p>
+
+              <div id="main" style="width: 500px;height:400px;"></div>
+              <script src= "roma.js"></script>
+              <script type="text/javascript">
+              let myChart = echarts.init(document.getElementById('main'), 'roma');
+                  var option;
+
+                  option = {
+                    title: {
+                      subtext: 'Source: NACO',
+                      left: 'right',
+
+                    },
+                    tooltip: {
+                      trigger: 'axis',
+                      axisPointer: {
+                        type: 'shadow'
+                      }
+                    },
+                    legend: {
+                      left: 'left',
+                      orient: 'vertical',
+                    },
+                    grid: {
+                      left: '3%',
+                      right: '4%',
+                      bottom: '3%',
+                      containLabel: true
+                    },
+                    xAxis: {
+                      type: 'value',
+                      boundaryGap: [0, 0.01]
+                    },
+                    yAxis: {
+                      type: 'category',
+                      data: ['Virally Suppressed', 'On ART', 'Status Awareness']
+                    },
+                    series: [
+                      {
+                        name: 'India Right Now (Estimation)',
+                        type: 'bar',
+                        data: [85, 84, 77]
+                      },
+                      {
+                        name: 'UNAIDS Goal',
+                        type: 'bar',
+                        data: [95, 95, 95]
+                      }
+                    ]
+                  };
+
+                  option && myChart.setOption(option);
+                  window.onresize = function() {
+                    chartOne.resize();
+                  };
+                  </script>
+              </div>
+
+              <div class= divtimeline>
+              <div class="uk-section">
+              <div class="uk-transform-origin-bottom-center uk-margin-bottom" uk-parallax="scale: 1,.2; start: 100%; end: 40vh">
+
+              <div class="uk-child-width-auto" uk-grid uk-countdown="date: 2030-01-11T00:00:00+00:00">
+              <div>
+                  <div class="uk-countdown-number uk-countdown-days"></div>
+                  <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Days</div>
+              </div>
+              <div class="uk-countdown-separator">:</div>
+              <div>
+                  <div class="uk-countdown-number uk-countdown-hours"></div>
+                  <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Hours</div>
+              </div>
+              <div class="uk-countdown-separator">:</div>
+              <div>
+                  <div class="uk-countdown-number uk-countdown-minutes"></div>
+                  <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Minutes</div>
+              </div>
+              <div class="uk-countdown-separator">:</div>
+              <div>
+                  <div class="uk-countdown-number uk-countdown-seconds"></div>
+                  <div class="uk-countdown-label uk-margin-small uk-text-center uk-visible@s">Seconds</div></center>
+              </div>
+            </div>
+          </div>
+        </div>
+
+            <center><p><span class="uk-text-muted uk-text-small">Counting down to 95-95-95</span></p></center></div></div>
+
+        <div class="divmain">
+
+            <p>Fazlur Gulfam Rahman, senior strategic analyst at HIV/AIDS Alliance India explained, “We don’t really know how many people are infected in this country…government data are all projections based on scientific models. They are not reality.”
+
+            <p>NACO uses a UNAIDS approved tool called ‘Spectrum’ to make these projections. The reports do not not delve into how exactly this tool is used and how the projections are calculated. A former data analyst of NACO stated that the projections are calculated taking into account the figures from the past three years. So, the numbers are all really probabilities and estimations.
+
+          <center><div style="min-height:768px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/PPNnm/embed.js?v=2" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/PPNnm/full.png" alt="" /></noscript></div></center>
+          <center><p><span class="uk-text-muted uk-text-small">This map shows the infection rates across different states in India (Source: NACO). This map also shows which states have social, monetary and nutritional schemes for PLHIV (Source: Journal of Family Medicine and Primary Care). Data for Leh, Ladakh and Lakshadweep was not available on the NACO site.</span></p></center>
+
+            </div>
+          </div>
+        </div>
+
+          <center>
+            <div id="chart_11" style="width: 950px;height:400px;"></div>
+            <script src= "roma.js"></script>
+            <script type="text/javascript">
+            let chartEleven = echarts.init(document.getElementById('chart_11'), 'roma');
+            var option;
+
+              option = {
+                title: {
+                  text: 'Distribution of People Living with HIV',
+                  subtext: 'in 100,000s',
+                  left: 'center'
+                },
+                tooltip: {
+                  trigger: 'item'
+                },
+                legend: {
+                  orient: 'vertical',
+                  left: 'left'
+                },
+                series: [
+                  {
+                    type: 'pie',
+                    radius: '50%',
+                    data: [
+                      { value: 12.81, name: 'Adult Men (15+)' },
+                      { value: 10.5, name: 'Adult Women (15+)' },
+                      { value: 0.7, name: 'Children (<15)' },
+                      { value: 1.7, name: 'Youth (15-24)' }
+                    ],
+                    emphasis: {
+                      itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                      }
+                    }
+                  }
+                ]
+              };
+
+              option && chartEleven.setOption(option);
+              </script>
+            </center>
+            <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+        <div class="divmain">
+
+        <p>Rahman explained that given the sheer size of the population, the laziness surrounding health check-ups in general, and the fear and sexually transmitted infections is shrouded in, makes the actual HIV infection rate impossible to quantify in India. Numbers from the latest phase of the National Family Health Survey shows the lack of initiative when it comes to getting tested for STIs.</p>
+
+        </div>
+
+        <div class="divmain">
+
+          <div id="chart_4" style="width: 950px;height:400px;"></div>
+          <script src= "roma.js"></script>
+          <script type="text/javascript">
+          let chartFour = echarts.init(document.getElementById('chart_4'), 'roma');
+          var option;
+          option = {
+            tooltip: {},
+
+            title: {
+              text: 'Self-reporting of STIs and STI Symptoms in %- Women vs Men',
+              left: 'center'
+            },
+            xAxis: {
+              type: 'category',
+              data: ['Women', 'Men']
+            },
+            yAxis: {
+              type: 'value'
+            },
+            series: [
+              {
+                data: [5, 2],
+                type: 'bar',
+                showBackground: true,
+                backgroundStyle: {
+                  color: 'rgba(180, 180, 180, 0.2)'
+                }
+              }
+            ]
+          };
+          option && chartFour.setOption(option);
+          </script>
+        </center>
+        <center><p><span class="uk-text-muted uk-text-small">Source: National Family Health Survey Phase V. The exact sample size for this particular question wasn't specified, but the NFHS covers 707 districts, and all 28 states and 8 union territories. According to the report, filed agencies gathered information from 636,699 households, 724,115 women, and 101,839 men.</span></p></center>
+      </div>
+
+      <div class="divmain">
+
+        <p>Dr. Gilada estimated that probably about 70% of infected people are not recorded or in the ambit of care. For instance, given the conditions Ghadge has found HIV+ children in – abandoned in garbage dumps, gutters and graveyards – it is conceivable that countless infected people are not represented by the numbers.
+        <p>Moreover, in spite of the rather optimistic projections, India has the third highest AIDS related mortality in the world, following Africa and Nigeria.</p>
+
+        <center>
+        <div id="chart_1" style="width: 950px;height:400px;"></div>
+        <script src= "roma.js"></script>
+        <script type="text/javascript">
+        let chartOne = echarts.init(document.getElementById('chart_1'), 'roma');
+        var option;
+
+        option = {
+          xAxis: {
+            type: 'category',
+            data: ['South Africa', 'Nigeria', 'India', 'Tanzania', 'Indonasia']
+          },
+          yAxis: {
+            type: 'value'
+          },
+          tooltip: {},
+
+          title: {
+            text: 'Countries With Highest AIDS Death Rates',
+            left: 'center'
+          },
+
+          series: [
+            {
+              data: [
+                51000,
+                51000,
+                {
+                  value: 42000,
+                  itemStyle: {
+                    color: '#FFC0CB'
+                  }
+                },
+                29000,
+                26000
+              ],
+              type: 'bar'
+            }
+          ]
+        };
+
+        option && chartOne.setOption(option);
+
+          window.onresize = function() {
+            chartOne.resize();
+          };
+          </script>
+        </center>
+
+        <center><p><span class="uk-text-muted uk-text-small">Source: UNAIDS</span></p></center>
+
+        <p>The high death rates spotlight the potentially high rates of late diagnoses, which have not been quantified so far. Given the dissonance between the high death rates and the relatively lower new infection rates, the rate of late diagnoses is worth investigating.
+        <p>The high death rates also call into question treatment access, quality and treatment adherence.
+
+          <hr class="uk-divider-icon">
+
+          <h1 class="uk-heading-bullet" id="4">A brief history of India’s journey - How did the Indian government tackle the epidemic?</h1>
+
+          <div class="uk-column-1-2">
+
+          <p><span class="first-letter">I</span>ndia saw its first cases of HIV in 1986. In the mid-eighties, the general perception was that India’s heterosexual, close-knit family oriented ethos would insulate it from the western import of the supposed “gay-man’s disease”.
+
+            <p>Of course, more cases cropped up in other parts of the country, leading it to be recognised as an epidemic.
+
+            <p>The stigma attached to HIV/AIDS was further pronounced by how it disproportionately affected marginalised groups, such as female sex workers, transgender women and men-who-have-sex-with-men.
+
+            <p>Rahman explained, “People failed to understand that the spread of the infection has less to do with the practice (sex) itself, and much more to do with social vulnerabilities. For instance, look at the kind of bargain a sex worker has to do – if she is offered 100 rupees more in order to have unprotected sex, of course she’ll take that offer.”
+
+            <p>In 1992, India’s Ministry of Health and Family Affairs registered an autonomous NGO under its wing, called the National AIDS Control Organisation (NACO). NACO launched the National AIDS Control Programme (NACP),  a five-year-phased programme to tackle HIV. This is an ecosystem dedicated to tackling HIV, running parallely to the mainstream health system.
+
+            <p>Rahman explained why NACO was established: “Usually when a disease is declared a crisis, the health ministry implements a programme centrally for a while before it hands it over to the respective state governments, as health is a state subject…..but everyone knew that the staff on ground may not be welcoming of patients, so HIV is handled by an entire system that runs parallel to our usual health system.”
+
+            <p>The NACP phases, until the latest phase, were funded by the Indian government as well as international sources such as World Bank, The Global Fund for AIDS, Gates Foundation and so on.
+
+        </div>
+      </div>
+
+        <div class="uk-section">
+        <div class="uk-transform-origin-bottom-center uk-margin-bottom" uk-parallax="scale: 1,.2; start: 100%; end: 40vh">
+        <center><iframe src='https://cdn.knightlab.com/libs/timeline3/latest/embed/index.html?source=1X531_udXuSyf8yPHfhYZIEzagf1y_0KFGi5xJvUvyaM&font=Playfair-FaunaOne&lang=en&initial_zoom=2&height=650' width='100%' height='650' webkitallowfullscreen mozallowfullscreen allowfullscreen frameborder='0'></iframe></center>
+        </div>
+      </div>
+
+        <div class='divmain'>
+
+          <div class="uk-column-1-2">
+
+        <p>The first three phases undoubtedly saw remarkable success in curtailing the epidemic, and launched several programmes which went on to become best practice models for AIDS.
+
+        <p>Balani shared, <i>“National AIDS Control Programme ke athyak prayason se, information aur awareness badha hai.” </i>(The relentless efforts of the National AIDS Control Programme has led to an increase in awareness and information dissemination.”
+
+        <p>The success reflected in the statistics – in a decade, the infection rates plummeted by 57%.
+
+        <p>However, while the fourth phase looks excellent on paper, it actually saw a dip in the government's gusto. International funding was also on the decline.
+
+        <p>Cornelis Rijneveld, a PhD candidate who studied chemsex and HIV-stigma in the Indian gay community explained, “The global recession has led to a downturn in international funding as India was a victim of its own success….these agencies were pulling out as India was no longer seen as a high-prevalence country.”
+
+        <p>This was further accentuated by the coming of the new NDA government in 2014, with their wariness of foreign funding and NGO work.
+
+        <p>There was also a fall in government funding in the financial year of 2013-14 – the estimated revenue of the government for NACO fell from 1500 crores in 2012 to 1397 crores.
+
+        <p>The budget has not been growing in proportion to the population it needs to take care of. Further, earlier, funds used to reach the state-level NACO organisations called State AIDS Control Societies (SACS) directly, but by the time the fourth phase came round, funds had to be routed through the state government treasury.
+
+        <p>So, the states’ share of funds started thinning, reaching late after jumping through a lot of loops.</div>
+
+        <center>
+          <div id="chart_3" style="width: 1000px;height:400px;"></div>
+          <script src= "roma.js"></script>
+          <script type="text/javascript">
+          let chartThree = echarts.init(document.getElementById('chart_3'), 'roma');
+          var option;
+          option = {
+            title: {
+              text: 'Revenue Estimates and Expenditure',
+              left: 'center'
+            },
+            tooltip: {
+              trigger: 'axis'
+            },
+            legend: {
+              data: ['Revenue Estimate', 'Expenditure'],
+              orient: 'vertical',
+              left: 'left',
+            },
+            toolbox: {
+              show: true,
+              feature: {
+                dataView: { show: true, readOnly: false },
+                magicType: { show: true, type: ['line', 'bar'] },
+                restore: { show: true },
+                saveAsImage: { show: true }
+              }
+            },
+            calculable: true,
+            xAxis: [
+              {
+                type: 'category',
+                // prettier-ignore
+                data: ['2013-14', '2014-15', '2015-16', '2016-17', '2017-18', '2018-19']
+              }
+            ],
+            yAxis: [
+              {
+                type: 'value'
+              }
+            ],
+            series: [
+              {
+                name: 'Revenue Estimate',
+                type: 'bar',
+                data: [1500, 1397, 1615, 1753, 2163, 1925],
+                markPoint: {
+                  data: [{ type: 'min', name: 'Min' }]
+                },
+                markLine: {
+                  data: [{ type: 'average', name: 'Avg' }]
+                }
+              },
+              {
+                name: 'Expenditure',
+                type: 'bar',
+                data: [1473, 1287, 1605, 1749, 2009, 1803],
+                markPoint: {
+                  data: [{ name: 'Max', value: 2009, xAxis: 7, yAxis: 2009 }]
+                },
+                markLine: {
+                  data: [{ type: 'average', name: 'Avg' }]
+                }
+              }
+            ]
+          };
+
+          option && chartThree.setOption(option);
+          window.onresize = function() {
+            chartThree.resize();
+          };
+          </script>
+        </center>
+        <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+        <div class="uk-column-1-2">
+
+
+          <p>Noteworthy is that there is no data on funding from 2019 to 2022. NACO officials were contacted for this data, but there was no response. A former data analyst for NACO revealed that he doesn't know why the information is not being updated.
+
+          <p>According to the fifth-phase plan released by the government, the estimated revenue estimate was set for rupees 2900 crore. The actual expenditure has not been revealed.
+
+          <p>However, Dr. Gilada strongly disagreed with the funding downturn claim. Dr. Gilada stated, “We simply cannot say that there is a shortage of funds. We are transitioning as an economy, trying to be a part of G7– so I do not think this is the case.”
+
+
+          <p>Moreover, the fourth phase also saw a change in the NACO leadership structure, with more governmental interference and monitoring.
+
+          <p>Earlier, NACO had a dedicated secretary. But the reorganisation structure led to ministers from the national health ministry being in charge. Its autonomy from the mainstream healthcare system was being jeopardised.
+
+          <p>The Caravan quoted a NACO worker, who stated “The minute donors started reducing their monitoring, red tape kicked in combined with a resource crunch”.
+
+          <p>Rijneveld added that the government’s indifference is evident in how there’s a lack of interaction between the high-level NACO officials and the people working on the ground – “This, of course, leaves little scope for improvement on the ground.”</div>
+
+        <hr class="uk-divider-icon">
+
+          <h1 class="uk-heading-bullet" id="5">Where is India going wrong?</h1>
+
+            <p><span class="first-letter">T</span>he lack of governmental initiative and apathy is reflected in the absence of any large-scale intervention projects and annual report publications since the mid-2010s.
+
+            <p>Condom advertisements are mired in controversy, HIV-related PSAs are no longer blaring everywhere, and the last available NACO annual report is from the year 2015-16.
+
+
+            <center><img src="naco.png" width="1000px" height="600px"></center>
+            <br>
+
+            <div class="uk-column-1-2">
+
+            <p>The Ministry of Health started a new publication about India’s HIV programme called the Sankalak Report, but it is barely advertised, and has no information on government funding.
+
+            <p>Moreover, there is a clear dissonance between Indian ministers and the NACO’s vision. This dissonance is problematic given how NACO is losing its autonomy from the government – governmental biases can bleed into NACO’s work.
+
+            <p>High-profile government officials have made factually unsound and ignorant remarks about HIV as well as sexually vulnerable communities.
+
+            <p>The former Health Minister Harshvardhan, has come under fire for remarking that the only way to defeat HIV/AIDS is by  people "strengthening their moral fibre". He also added that promotion of condom use should not be the core of the prevention campaign, as it sends a message that any kind of sexual encounter is okay as long as there's a condom.
+
+            <p>Another instance is when homosexuality was decriminalised in India, former member of parliament Subramaniam Swamy stated that it could lead to a rise in HIV - "This verdict could give rise to other issues such as increase in the number of HIV cases, gay bars, etc. It cannot be treated like an alternate sexual behaviour." This is also reflective of how the government is not very welcoming to the people who fall in the category of high-risk groups.</p></div>
+
+            <br>
+
+            <center><iframe width="800" height="600" src="https://www.youtube.com/embed/WeZQjbcWDNk?start=18" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
+
+            <center><p><span class="uk-text-muted uk-text-small">Subramaniam Swamy, on the decriminalisation of homosexuality.</span></p></center>
+
+            <p>Furthermore, while latest NACO data boasts of 619 antiretroviral centres and 1261 link-antiretroviral centres, it has been documented that many of them are severely ill-equipped.
+
+        <div id="chart_6" style="width: 1000px ;height:400px;"></div>
+        <script type="text/javascript">
+        var chartDom = document.getElementById('chart_6');
+        var chartSix = echarts.init(chartDom);
+        var option;
+        option = {
+          color: ['#37A2FF', '#FF0087', '#FFBF00'],
+          title: { },
+          tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+              type: 'cross',
+              label: {
+                backgroundColor: '#6a7985'
+              }
+            }
+          },
+          legend: {
+            data: ['ART Centres', 'Link ART Centres', 'Care Support Centres'],
+            left: 'center'
+          },
+          toolbox: {
+            feature: {
+              saveAsImage: {}
+            }
+          },
+          grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+          },
+          xAxis: [
+            {
+              type: 'category',
+              boundaryGap: false,
+              data: ['2017-18', '2018-19', '2019-20', '2020-21']
+            }
+          ],
+          yAxis: [
+            {
+              type: 'value'
+            }
+          ],
+          series: [
+            {
+              name: 'ART Centres',
+              type: 'line',
+              stack: 'Total',
+              smooth: true,
+              lineStyle: {
+                width: 0
+              },
+              showSymbol: false,
+              areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: 'rgb(55, 162, 255)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgb(116, 21, 219)'
+                  }
+                ])
+              },
+              emphasis: {
+                focus: 'series'
+              },
+              data: [535, 542, 553, 619]
+            },
+            {
+              name: 'Link ART Centres',
+              type: 'line',
+              stack: 'Total',
+              smooth: true,
+              lineStyle: {
+                width: 0
+              },
+              showSymbol: false,
+              areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: 'rgb(255, 0, 135)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgb(135, 0, 157)'
+                  }
+                ])
+              },
+              emphasis: {
+                focus: 'series'
+              },
+              data: [1108, 1108, 1270, 1261]
+            },
+            {
+              name: 'Care Support Centres',
+              type: 'line',
+              stack: 'Total',
+              smooth: true,
+              lineStyle: {
+                width: 0
+              },
+              showSymbol: false,
+              label: {
+                show: true,
+                position: 'top'
+              },
+              areaStyle: {
+                opacity: 0.8,
+                color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                  {
+                    offset: 0,
+                    color: 'rgb(255, 191, 0)'
+                  },
+                  {
+                    offset: 1,
+                    color: 'rgb(224, 62, 76)'
+                  }
+                ])
+              },
+              emphasis: {
+                focus: 'series'
+              },
+              data: [350, 310, 310, 310]
+            }
+          ]
+        };
+
+        option && chartSix.setOption(option);
+        </script>
+        <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+
+      <p>A case study by Lincoln P.Choudhury and his team analysed ART centres throughout India in 2017.
+      <p>Three factors were looked at - Scale Efficiency (SE), Pure Technical Efficiency (PTE), Overall Technical Efficiency (OTE). Scale Efficiency measured the capacity of the ART centre in proportion to the number of patients it had under its wing, Pure Technical Efficiency looked measured how well equipped the ART centre was and Overall Technical Efficiency was a combination of SE Aand PTE. A score of 1 on any parameter indicated high inefficiency. For instance, if an ART centre has an SE of 1, it means it is highly inefficient in terms of scale efficiency.
+
+        <div id="chart_7" style="width: 1000px ;height:400px;"></div>
+        <script src= "roma.js"></script>
+        <script type="text/javascript">
+        let chartSeven = echarts.init(document.getElementById('chart_7'), 'roma');
+        var option;
+
+        option = {
+          title: {},
+          tooltip: {
+            trigger: 'item'
+          },
+          legend: {
+            top: '5%',
+            orient: 'vertical',
+            left: 'right',
+            // doesn't perfectly work with our tricks, disable it
+            selectedMode: false
+          },
+          series: [
+            {
+              name: 'Out of the 494 centres studied',
+              type: 'pie',
+              radius: ['40%', '70%'],
+              center: ['50%', '70%'],
+              // adjust the start angle
+              startAngle: 180,
+              label: {
+                show: true,
+                formatter(param) {
+                  // correct the percentage
+                  return param.name + ' (' + param.percent * 2 + '%)';
+                }
+              },
+              data: [
+                { value: 21, name: 'OTE=1' },
+                { value: 194, name: 'SE=1' },
+                { value: 49, name: 'PTE=1' },
+                {
+                  // make an record to fill the bottom 50%
+                  value: 21 + 194 + 49,
+                  itemStyle: {
+                    // stop the chart from rendering this piece
+                    color: 'none',
+                    decal: {
+                      symbol: 'none'
+                    }
+                  },
+                  label: {
+                    show: false
+                  }
+                }
+              ]
+            }
+          ]
+        };
+
+        option && chartSeven.setOption(option);
+        </script>
+      </center>
+      <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+      <div class="uk-column-1-2">
+
+      <p>There has also been controversy regarding shortage of ART medication due to supply-chain issues, which Dr. Gilada believes “has been resolved”.
+
+      <p>Rijneveld also pointed out the lack of an intersectional approach to treatment – “If you’re a gay or bisexual man using drugs and are HIV-positive, there’s a need for a simultaneous intervention. Most drug-use centres have nothing to do with HIV care and vice-versa.
+
+      <p>Dr. Gilada also added that there is an upsurge in other STDs such as syphilis, gonorrhoea and herpes. Moreover, while fresh infections are on an overall decline, he pointed out that there is an uptick in HIV infections among the youth population aged between 18 and 25.
+
+      <p>This upsurge could be explained by the access the Indian youth has, that facilitates the spread of STDs and STIs in the population. Dr. Gilada explained: “Nowadays, there are so many new factors…there is Tinder, Grindr, there is Chemsex – none of these are being looked at. New issues and sources will keep coming up and they need to be addressed.”
+
+        <center>
+        <div id="chartfive" style="width: 500px;height:400px;"></div>
+        <script src= "roma.js"></script>
+        <script type="text/javascript">
+        let chartfive = echarts.init(document.getElementById('chartfive'), 'roma');
+        var option;
+
+        option = {
+          title: {
+            text: 'Teenagers Reporting an STI (2021)',
+            subtext: 'Source: NFHS-V',
+            left: 'right'
+          },
+          tooltip: {},
+
+          legend: {
+            orient: 'vertical',
+            left: 'left'
+          },
+          series: [
+            {
+              type: 'pie',
+              radius: '50%',
+              data: [
+                { value: 2081, name: 'Reported an STI' },
+                { value: 20808, name: 'Total number of participants' }
+              ],
+              emphasis: {
+                itemStyle: {
+                  shadowBlur: 10,
+                  shadowOffsetX: 0,
+                  shadowColor: 'rgba(0, 0, 0, 0.5)'
+                }
+              }
+            }
+          ]
+        };
+
+        option && chartfive.setOption(option);
+        </script>
+        </center>
+      </div>
+
+        <p>Unfortunately, there is a lack of updated national epidemiological data on STDs and STIs in India. The closest epid data on STIs is the National Family Health Surveys. The most quoted national figure is from ICMR’S 2002-03 study, which found the STI incidence rate among adults to be 6%.
+         <p>Rijneveld echoed Dr. Gilada’s sentiments by adding “The same groups of people and the same problems are being targeted over and over again…the methods of targeted interventions are completely outdated.”
+
+           <div id="chart_8" style="width: 1000px ;height:400px;"></div>
+           <script src= "roma.js"></script>
+           <script type="text/javascript">
+           let chartEight = echarts.init(document.getElementById('chart_8'), 'roma');
+           var option;
+
+           option = {
+             tooltip: {},
+             title: {
+               text: 'High-Risk Group Coverage Over The Years',
+               left: 'center'
+             },
+
+             xAxis: {
+               type: 'category',
+               data: ['2015-16', '2016-17', '2017-18', '2018-19', '2019-20']
+             },
+             yAxis: {
+               type: 'value'
+             },
+             series: [
+               {
+                 data: [5502104, 4885159, 6067136, 6662039, 8661886],
+                 type: 'line',
+
+               }
+             ]
+           };
+
+           option && chartEight.setOption(option);
+           </script>
+           <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+
+           <div id="chart_12" style="width: 1000px ;height:400px;"></div>
+           <script src= "roma.js"></script>
+           <script type="text/javascript">
+           let chartTwelve = echarts.init(document.getElementById('chart_12'), 'roma');
+           var option;
+
+           option = {
+              title: {
+                text: 'High Risk Groups Positivity Rate (in %)',
+                subtext: 'in 100,000s',
+                left: 'center'
+              },
+              tooltip: {
+                trigger: 'item'
+              },
+              legend: {
+                orient: 'vertical',
+                left: 'left'
+              },
+              series: [
+                {
+                  type: 'pie',
+                  radius: '50%',
+                  data: [
+                    { value: 0.11, name: 'Female Sex Workers' },
+                    { value: 0.28, name: 'Men-Who-Have-Sex-With-Men' },
+                    { value: 0.48, name: 'Transgender Women/Hijras' },
+                    { value: 1.11, name: 'Injecting Drug Users' },
+                    { value: 0.15, name: 'Truckers' },
+                    { value: 0.15, name: 'Migrants' }
+                  ],
+                  emphasis: {
+                    itemStyle: {
+                      shadowBlur: 10,
+                      shadowOffsetX: 0,
+                      shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                  }
+                }
+              ]
+            };
+
+            option && chartTwelve.setOption(option);
+            </script>
+            <center><p><span class="uk-text-muted uk-text-small">Source: NACO</span></p></center>
+
+            <div class="uk-column-1-2">
+
+
+               <p>However, problems with India’s HIV landscape are not just limited to the governmental level.
+
+               <p>Discrimination against PLHIV is still a sad reality, which has prompted at least two documented suicides in 2022. A study Rahman worked on found that many transgenders stopped their treatment due to lack of gender-affirmative healthcare.
+
+               <p>Rahman shared, “My jaw dropped when I heard people literally say “I know this medicine can save my life, but I’d rather die than go to that place where I’m discriminated against.””
+
+               <p>The discrimination stems from not only how HIV is largely purported as a death sentence, but also due to how high-risk groups are placed in the Indian social totem poll – transgender women, female sex workers, men-who-have-sex-with-men have not been welcomed by the so called mainstream society.
+
+               <p>Balani explained that she, as “a straight woman representing as a woman at every level faces stigma”, so the stigma faced by LGBTQIA people or sex workers “would be ten times” what she faces.
+
+               <p>While the environment is certainly less hostile compared to what Balani and the first cohort of Palawi children had to endure, living with HIV is still shrouded in shame.
+
+              <p>Ghadge revealed stories of HIV-positive children being found even in plastic bags clenched in the jaws of stray dogs. It was so difficult to get the children of Palawi into mainstream schooling, that Palawi started a school of their own.
+
+              <p>Kaushiki Sinha, the public relations manager of Palawi shared that while conditions have improved, “HIV-positive youths are not assimilated with the mainstream yet.”</div>
+
+          <br>
+
+          <div class="uk-animation-toggle" tabindex="0">
+          <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
+          <center><video width="1000" height="600" controls>
+          <source src="discrimination clip 12.mp4" type="video/mp4">
+            </div>
+         </div>
+        </div>
+      </div>
+
+      <div class="divmain">
+
+        <p>Another example of HIV-related stigma was highlighted by Rijneveld. He described witch hunts that occur in the Indian gay dating scene against men who have HIV: “On Grindr, there will be fake profiles which have information with photographs like this: “This is Gaurav and he is HIV-positive. Stay away from him.”
+
+          <div class="uk-animation-toggle" tabindex="0">
+          <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
+          <center><img src="gaurav.jpg" width="300px" height="500px"></center>
+         </div>
+         </div>
+
+        <center><p><span class="uk-text-muted uk-text-small">A dummy witch-hunting profile described by Rijneveld.</span></p></center>
+        </div>
+
+        <div class="divmain">
+
+        <p>There is data to support the anecdotal evidence of discriminatory behaviour. According to the latest phase of the National Family Health Survey (NFHS-V), attitudes of acceptance have come down.
+
+        <p>In the HIV-related section of the nationwide survey, which was answered by men and women ranging from the ages of 15-49, there are a set of questions relating to people living with HIV.
+
+        <p>For example, one of the questions was if they would buy vegetables from a vendor who had HIV/AIDS. The survey found that 64% of women and 69% of men would buy vegetables from an HIV+ vendor. However, in the previous phase, 69% of women and 73% of men answered the same question in the affirmative. This is particularly alarming, given that the fourth phase was conducted in 2015-16 and the fifth phase, in 2019-21.
+
+          <div id="chart_9" style="width: 1000px ;height:400px;"></div>
+          <script src= "roma.js"></script>
+          <script type="text/javascript">
+          let chartNine = echarts.init(document.getElementById('chart_9'), 'roma');
+          var option;
+            option = {
+            title: {
+              text: 'Will you buy from a HIV+ Vendor?',
+              left: 'center',
+            },
+            legend: {
+
+              orient: 'vertical',
+              left: 'left',
+
+            },
+            tooltip: {},
+            dataset: {
+              source: [
+                ['product', 'What women said', 'What men said'],
+                ['NFHS-IV', 69, 73],
+                ['NFHS-V', 64, 69]
+              ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [{ type: 'bar' }, { type: 'bar' }]
+          };
+
+
+          option && chartNine.setOption(option);
+          </script>
+          <center><p><span class="uk-text-muted uk-text-small">Source: NFHS-V</span></p></center>
+
+
+          <p>According to the survey, general awareness among the youth has also seen a decline – 22% of women aged 15-24 had comprehensive knowledge on HIV prevention, transmission and testing in NHFS-1V, as compared to 20% of women in NFHS-V. Along a similar trend, 32% of young men had comprehensive knowledge on HIV according to NFHS-IV data as compared to 29% of men as per the NFHS-V data.
+
+          <div id="chart_10" style="width: 1000px ;height:400px;"></div>
+          <script src= "roma.js"></script>
+          <script type="text/javascript">
+          let chartTen = echarts.init(document.getElementById('chart_10'), 'roma');
+          var option;
+          option = {
+            title: {
+              text: 'Knowledge About HIV Among Youths (Aged 15-24)',
+              left: 'center',
+            },
+            legend: {
+
+               orient: 'vertical',
+               left: 'left',
+
+             },
+            tooltip: {},
+            dataset: {
+              source: [
+                ['product', 'Women', 'Men'],
+                ['NFHS-IV', 22, 32],
+                ['NFHS-V', 20, 29]
+              ]
+            },
+            xAxis: { type: 'category' },
+            yAxis: {},
+            // Declare several bar series, each will be mapped
+            // to a column of dataset.source by default.
+            series: [{ type: 'bar' }, { type: 'bar' }]
+          };
+
+          option && chartTen.setOption(option);
+          </script>
+          <center><p><span class="uk-text-muted uk-text-small">Source: NFHS-V</span></p></center>
+
+        </center>
+
+        <p> So, the projections are unreliable, there are vital data gaps, death rates are high, governmental apathy is apparent, the methods of intervention are outdated and discrimination is still rampant.
+
+        <p>Further, the lack of new initiatives and NACO’s deterioration display indifference and complacency.
+
+        <p>It seems like India has a long way to go before it can boast of beating the epidemic. Dr. Gilada, in spite of his optimism regarding India’s HIV management said “I would say India has a lot of time before it ends HIV, and is not close to the 95-95-95 goal.”
+
+          <hr class="uk-divider-icon">
+
+        <h1 class="uk-heading-bullet" id="6">So, How is India doing?</h1>
+
+        <div class="uk-column-1-2">
+
+          <p><span class="first-letter">S</span>o, where does India stand in tackling HIV? What kind of life will one lead in India with HIV?
+
+          <p>As far as meeting the 95-95-95 goal is concerned, most experts have been sceptical.
+
+          <p>Further, as Rahman pointed out, the goal set by UNAIDS is arbitrary and fails to take into account how epidemics evolve – “UNAIDS set this goal when injecting drug use wasn’t even a problem.”
+
+          <p>Outside of the 95-95-95 end goal which India may not meet, the HIV landscape is a mixed bag.
+
+          <p>While things at the governmental level are contentious, India is, at least on paper, progressive on the human rights front of HIV.
+
+          <p>Rijneveld pointed out that unlike some developed nations such as the United Kingdom, India does not have any persecutory laws for people living with HIV: “For instance, one cannot be persecuted for non-disclosure of status.” </div>
+
+            <div style="position: relative; width: 100%; height: 0; padding-top: 56.2500%;
+             padding-bottom: 0; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 1.6em; margin-bottom: 0.9em; overflow: hidden;
+             border-radius: 8px; will-change: transform;">
+              <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none; padding: 0;margin: 0;"
+                src="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAFo0vCLbkQ&#x2F;view?embed">
+              </iframe>
+            </div>
+            <center><p><span class="uk-text-muted uk-text-small">Made with Canva</span></p></center>
+          <br>
+          <br>
+          <div class="uk-column-1-2">
+
+          <p>India also recently passed the HIV/AIDS Prevention and Control Act, which aims to prevent discrimination against those living with HIV. Balani pointed out how states are finally adopting the tenets of the Act by appointing ombudsmen, who receive and deal with complaints of discrimination.
+
+          <p>Moreover, grassroot-level organisations, NGOs and other civilian ventures are actively working to beat the epidemic. Such industry has undoubtedly played a role in improving access to treatment, dissemination of information and lessening the stigma associated with HIV/AIDS.
+
+          <p>Palawi’s work is an example of civilian enthusiasm. Sinha and Ghadge narrated numerous instances where they fought tooth-and-nail in order to care for their children.
+
+          <p>One particularly striking incident was when one of their young girls namely Meenakshi (name changed) needed an open-heart surgery, for which Ghadge managed to cough up funds to get her treatment from the reputed Kokilaben Hospital in Mumbai.</div>
+
+            <br>
+                  <div class="uk-animation-toggle" tabindex="0">
+                    <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
+                      <center><img src="meenakshi1.png" height="400" width="400"></center></div></div>
+                      <center><p><span class="uk-text-muted uk-text-small">Dimple Ghadge with Meenakshi. Photography cedits: Palawi.</span></p></center></div>
+          <div class="divmain">
+
+          <p>They also pay close attention to the childrens’ mental health by paying hefty sums of money for therapy and counselling.
+
+          <p>Further, as of December 2022, at-home testing for HIV has been made available – this, according to Dr. Gilada, will be a game-changer for India’s HIV crisis.
+
+          <p>These test kits reveal the results within twenty minutes in the privacy of one's own home – this, at least for the middle-class of India, will be a major impetus for getting tested.
+
+
+
+
+          </div>
+          <div class= "divmain">
+
+          <video src="screenrec.mp4" autoplay loop muted playsinline></video>
+          <center><p><span class="uk-text-muted uk-text-small">Self-testing kits for HIV are becoming more accessible in India.</span></p></center></div>
+
+          <div class= "divmain">
+          <div uk-slideshow="animation: fade">
+
+              <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+
+                  <ul class="uk-slideshow-items">
+                    <li>
+                        <video src="gawd.mp4" autoplay loop muted playsinline uk-cover></video>
+                    </li>
+                      <li>
+                          <img src="2.jpeg" alt="" uk-cover>
+                      </li>
+                      <li>
+                          <img src="3.jpeg" alt="" uk-cover>
+                      </li>
+                      <li>
+                          <img src="9.jpg" alt="" uk-cover>
+                      </li>
+                      <li>
+                          <img src="10.jpg" alt="" uk-cover>
+                      </li>
+                  </ul>
+                  <a class="uk-position-bottom-left uk-position-small uk-hidden-hover uk-light" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+                  <a class="uk-position-bottom-right uk-position-small uk-hidden-hover uk-light" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+               </div>
+             <ul class="uk-slideshow-nav uk-dotnav uk-flex-center uk-margin uk-muted"></ul>
+          </div>
+          <center><p><span class="uk-text-muted uk-text-small uk-light">Gaw, a gender-fluid queer graduate student residing in Gandhinager, ordered an HIV self-testing kit. They reported that the packaging was discreet and the delivery, timely. This slideshow shows how a self-testing kit looks. Photography credits: Gautham Anil Warrier.</span></p></center>
+
+                        </div>
+                    </div>
+                </div>
+              </div>
+
+              <div class="uk-animation-toggle" tabindex="0">
+                <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-right; repeat: true">
+                  <center><img src="humsafar.jpeg" height="400" width="1000"></center></div></div>
+                  <center><p><span class="uk-text-muted uk-text-small">Humsafar Trust, an HIV clinic in Mumbai. Photography credits: Shivali Verma.</span></p></center></div>
+
+              <div class="divmain">
+
+              <p>In spite of it being largely stigmatised, seeds of acceptance are being sown, which is evidenced in sero-discordinant marriages. Dr. Gilada shared – “Yesterday, I had one of my patients bring me a box of sweets with the news of her marriage being fixed. She is HIV-positive and her husband is HIV-negative. Personally, I have seen many mixed marriages taking place nowadays.”
+
+              <p>Balani and Ghadge, two individuals whose lives are shaped by HIV, albeit differently, have expressed that there is a slow but visible change in the societal mindset when it comes to HIV.
+
+
+          <div class="uk-animation-toggle" tabindex="0">
+          <div class="uk-card uk-card-body" uk-scrollspy="cls: uk-animation-slide-left; repeat: true">
+          <center><video width="950" height="500" controls "uk-animation-slide-left-small uk-animation-reverse">
+          <source src="final clip 12.mp4" type="video/mp4"></div></div></div>
+
+            <div class="divmain">
+
+              <p>There has certainly been some progress over the decades, but there are different takes on whether or not India is still in the right direction.
+
+              <p>Dr. Gilada believes that India, with all its problems, is in good shape. He stated: “Statistics showing India in the top positions for AIDS death rates sends the wrong message. Any country with such a big population will obviously top such lists. Same thing happened to India with COVID."
+
+              <p>Rahman, on the other hand, spotlighted another kind of false messaging. He vehemently stated that a lot of the policies and initiatives geared towards meeting the 95-95-95 goal are purely “political propaganda” and cannot do much to actually end the epidemic. However, he did acknowledge that India has made progress in some aspects, such as in controlling parent-to-child-transmission of HIV.
+
+              <p>But, there was mutual consensus on the need for HIV lives to be brought into the mainstream, and not to be tangled with so much discrimination, disgrace and shame, especially given the need for positive prevention. As Balani said, “Know HIV to say no to HIV…because I know my status, I was able to commit to not spreading it to anyone.”
+
+             </div>
+
+            <br>
+            <br>
+
+            <div class="uk-section-small uk-section-secondary">
+            <div class="uk-container">
+            <center><div>
+              <a href="https://twitter.com/shash_su?t=Y4VP5Mmm-KE3VGn0qReaGw&s=08" class="uk-icon-button uk-margin-small-right" uk-icon="twitter"></a>
+              <a href="https://www.facebook.com/search/top?q=mona%20balani" class="uk-icon-button  uk-margin-small-right" uk-icon="facebook"></a>
+              <a href="https://www.linkedin.com/in/shashwathi-sudhakar-591a291b1/" class="uk-icon-button" uk-icon="linkedin"></a>
+              </center>
+                </div>
+              </div>
+          </div>
+        </body>
+        </html>
